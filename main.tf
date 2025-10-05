@@ -1,4 +1,11 @@
 terraform {
+  backend "remote"{
+    hostname = "app.terraform.io"
+    organization = "alvaro-project"
+    workspaces {
+      name = "HCP-terraform-Azure"
+    }
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -12,7 +19,7 @@ provider "azurerm" {
 }
 
 variable "storage_name" {
-  type        = string
+  type = string
 }
 
 resource "azurerm_resource_group" "newrsg" {
